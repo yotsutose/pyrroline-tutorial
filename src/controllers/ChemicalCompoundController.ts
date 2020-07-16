@@ -6,16 +6,22 @@ import { ChemicalCompound } from "../models/ChemicalCompound";
 export class ChemicalCompoundController {
   @Get()
   public get(): ChemicalCompound[] {
-     return chemicalCompounds;
+    return chemicalCompounds;
   }
-  
+
   @Get("/:id")
   public getOneById(@Param("id") id: number): ChemicalCompound {
     return chemicalCompounds[id];
   }
 
-  // @Post("/users")
-  // post(@Body() user: any) {
-  //     return "Saving user...";
-  // }
+  // ここから追加した
+
+  @Post("/add")
+  public post(@Body() NextChemicalCompound: ChemicalCompound): ChemicalCompound {
+    // console.log("ok")
+    // console.log(NextChemicalCompound.name);
+
+    return NextChemicalCompound;
+  }
+  
 }
