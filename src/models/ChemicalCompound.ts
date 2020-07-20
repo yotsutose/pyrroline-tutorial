@@ -1,12 +1,12 @@
-import { IsNotEmpty } from "class-validator";
+import { IsString, IsNumber } from "class-validator";
 
 export class ChemicalCompound {
-  @IsNotEmpty()
+  @IsString()
   public name: string;
 
-  @IsNotEmpty()
+  @IsString()
   public class: string;
 
-  @IsNotEmpty()
+  @IsNumber()
   public count: number;
 }

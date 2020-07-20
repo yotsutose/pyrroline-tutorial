@@ -14,11 +14,11 @@ export class ChemicalCompoundController {
     return chemicalCompounds[id];
   }
 
-
-  @Post("/add")
-  public post(@Body() NextChemicalCompound: ChemicalCompound): ChemicalCompound {
-    NextChemicalCompound.count -= 5;
-    return NextChemicalCompound;
+  @Post()
+  public post(@Body() nextChemicalCompound: ChemicalCompound): ChemicalCompound {
+    nextChemicalCompound.count -= 5;
+    console.log(nextChemicalCompound);
+    return nextChemicalCompound;
   }
 
 }
