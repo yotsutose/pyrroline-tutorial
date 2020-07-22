@@ -1,17 +1,14 @@
-import "reflect-metadata"; // this shim is required
+import "reflect-metadata";
 import {createExpressServer} from "routing-controllers";
 import {ChemicalCompoundController} from "./controllers/ChemicalCompoundController";
+import { createConnection } from "typeorm";
 
-// creates express app, registers all controller routes and returns you express app instance
-const app = createExpressServer({
-   controllers: [ChemicalCompoundController] // we specify controllers we want to use
+const app: any = createExpressServer({
+  controllers: [ChemicalCompoundController]
 });
 
-// run express application on port 3000
-
-// app.listen(3000);
-app.listen(3000,
-  
-() => { console.log("Example app listening on http://localhost:3000"); }
-
-);
+createConnection().then(() => {
+  app.listen(3000, () => { 
+    console.log("Example app listening on http://localhost:3000");
+  });
+});
