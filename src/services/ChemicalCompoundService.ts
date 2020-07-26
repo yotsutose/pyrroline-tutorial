@@ -8,25 +8,15 @@ export class ChemicalCompoundService {
     this.chemicalCompoundRepository = getRepository(ChemicalCompound);
   }
 
-  public async find(): Promise<ChemicalCompound[]> {
-    return await this.chemicalCompoundRepository.find();
+  public find(): Promise<ChemicalCompound[]> {
+    return this.chemicalCompoundRepository.find();
   }
 
-  public async findOneById(chemicalCompoundId: number) {
-    return await this.chemicalCompoundRepository.find(
-      {id: chemicalCompoundId }
-    );
+  public findOneById(chemicalCompoundId: number): Promise<ChemicalCompound | undefined> {
+    return this.chemicalCompoundRepository.findOne(chemicalCompoundId);
   }
 
-  public async save(nextChemicalCompound: ChemicalCompound) : Promise<ChemicalCompound>{
-    const newChemicalCompound = this.chemicalCompoundRepository.create({
-      name: nextChemicalCompound.name,
-      class: nextChemicalCompound.class,
-      count: nextChemicalCompound.count
-      // name:"def",
-      // class: "fdafa",
-      // count: 23
-    });
-    return await this.chemicalCompoundRepository.save(newChemicalCompound);
+  public save(nextChemicalCompound: ChemicalCompound): Promise<ChemicalCompound>{
+    return this.chemicalCompoundRepository.save(nextChemicalCompound);
   }
 }

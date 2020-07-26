@@ -1,5 +1,4 @@
-import { JsonController, Param, Body, Get, Post } from "routing-controllers";
-import { chemicalCompounds } from "../dummydata/ChemicalCompoundsDummy";
+import { JsonController, Param, Body, Get, Post, HttpCode } from "routing-controllers";
 import { ChemicalCompound } from "../models/ChemicalCompound";
 import { ChemicalCompoundService } from "../services/ChemicalCompoundService";
 
@@ -17,13 +16,13 @@ export class ChemicalCompoundController {
   }
 
   @Get("/:id")
-  public getOneById(@Param("id") id: number): Promise<ChemicalCompound[]> {
+  public getOneById(@Param("id") id: number): Promise<ChemicalCompound | undefined> {
     return this.chemicalCompoundService.findOneById(id);
   }
 
+  @HttpCode(201)
   @Post()
   public post(@Body() nextChemicalCompound: ChemicalCompound): Promise<ChemicalCompound> {
     return this.chemicalCompoundService.save(nextChemicalCompound);
   }
-
 }
